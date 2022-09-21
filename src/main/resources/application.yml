@@ -14,3 +14,6 @@ spring:
     hibernate:
       ddl-auto: update
 
+server:
+  max-http-header-size: 102400
+  port: 8001
