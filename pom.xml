@@ -8,10 +8,10 @@
 		<version>2.7.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>comfyhotel-backend</artifactId>
+	<groupId>com.pyyybf</groupId>
+	<artifactId>comfyhotel</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>comfyhotel-backend</name>
+	<name>comfyhotel</name>
 	<description>comfyhotel-backend</description>
 	<properties>
 		<java.version>1.8</java.version>

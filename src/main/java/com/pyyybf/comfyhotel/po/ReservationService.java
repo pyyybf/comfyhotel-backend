@@ -1,4 +1,4 @@
-package com.example.comfyhotelbackend.po;
+package com.pyyybf.comfyhotel.po;
 
 import lombok.Data;
 
@@ -7,24 +7,24 @@ import java.sql.Timestamp;
 
 /**
  * @program: comfy_hotel
- * @description: entity corresponding to table comment
+ * @description: entity corresponding to table reservation_service
  * @author: panyue
  * @date: 2022/9/20
  **/
 @Data
 @Entity
-@Table(name = "comment")
-public class Comment {
+@Table(name = "reservation_service")
+public class ReservationService {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "comment_id")
-    private Long commentId;
+    @Column(name = "reservation_service_id")
+    private Long reservationServiceId;
 
     @Column(name = "reservation_id")
     private Long reservationId;
 
-    @Column(name = "rate")
-    private Integer rate;
+    @Column(name = "service_id")
+    private Long serviceId;
 
     @Column(name = "time")
     private Timestamp time;

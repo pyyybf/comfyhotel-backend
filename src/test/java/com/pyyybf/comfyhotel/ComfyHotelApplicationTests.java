@@ -1,10 +1,10 @@
-package com.example.comfyhotelbackend;
+package com.pyyybf.comfyhotel;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ComfyhotelBackendApplicationTests {
+class ComfyHotelApplicationTests {
 
 	@Test
 	void contextLoads() {

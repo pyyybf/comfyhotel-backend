@@ -1,4 +1,4 @@
-package com.example.comfyhotelbackend.po;
+package com.pyyybf.comfyhotel.po;
 
 import lombok.Data;
 
