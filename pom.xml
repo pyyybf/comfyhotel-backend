@@ -29,6 +29,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.13</version><!--用这个版本才能连上mysql 5.7-->
 			<scope>runtime</scope>
 		</dependency>
 
