@@ -50,6 +50,65 @@ CREATE TABLE `user`
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `user`
+--
+
+BEGIN;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+INSERT INTO user
+VALUES (1, 'pyyybf@gmail.com', 'pyyybf', 'Yue', 'Pan', '123456', '2134485795', '1', '', '1325 W 24th St', 'Los Angeles', 'California', '90007', 98);
+INSERT INTO user
+VALUES (2, 'user2@gmail.com', 'user2', 'Gillner', 'Farnleitner', '123456', '2703743172', '1', '', '1325 W 24th St', '', 'South Carolina', '32900', 90);
+INSERT INTO user
+VALUES (3, 'user3@gmail.com', 'user3', 'Ritter', 'Moeyens', '123456', '2998893659', '1', '', '1325 W 24th St', '', 'Arkansas', '48191', 49);
+INSERT INTO user
+VALUES (4, 'user4@gmail.com', 'user4', 'Deckert', 'Moeyens', '123456', '2964335831', '1', '', '1325 W 24th St', '', 'Georgia', '41382', 98);
+INSERT INTO user
+VALUES (5, 'user5@gmail.com', 'user5', 'Vendramin', 'Maharaj', '123456', '2655252994', '1', '', '1325 W 24th St', '', 'Ramey', '03600', 16);
+INSERT INTO user
+VALUES (6, 'user6@gmail.com', 'user6', 'Deckert', 'Maharaj', '123456', '2947737532', '1', '', '1325 W 24th St', '', 'Kentucky', '78352', 32);
+INSERT INTO user
+VALUES (7, 'user7@gmail.com', 'user7', 'Maimaitiyiming', 'Chambers', '123456', '2349951686', '1', '', '1325 W 24th St', '', 'New York', '81842', 56);
+INSERT INTO user
+VALUES (8, 'user8@gmail.com', 'user8', 'Dietz', 'Girotti', '123456', '2137308690', '1', '', '1325 W 24th St', '', 'Montana', '40057', 49);
+INSERT INTO user
+VALUES (9, 'user9@gmail.com', 'user9', 'Binder', 'Zhang', '123456', '2442028157', '1', '', '1325 W 24th St', '', 'Ontario', '52968', 62);
+INSERT INTO user
+VALUES (10, 'user10@gmail.com', 'user10', 'Vendramin', 'Prien', '123456', '2296150832', '1', '', '1325 W 24th St', '', 'Florida', '69936', 4);
+INSERT INTO user
+VALUES (11, 'user11@gmail.com', 'user11', 'Gillner', 'Maharaj', '123456', '2426774964', '1', '', '1325 W 24th St', '', 'South Carolina', '27089', 21);
+INSERT INTO user
+VALUES (12, 'user12@gmail.com', 'user12', 'Binder', 'Zhang', '123456', '2779789427', '1', '', '1325 W 24th St', '', 'Ohio', '21667', 20);
+INSERT INTO user
+VALUES (13, 'user13@gmail.com', 'user13', 'Lammle', 'Moeyens', '123456', '2821940499', '1', '', '1325 W 24th St', '', 'Minnesota', '25862', 52);
+INSERT INTO user
+VALUES (14, 'user14@gmail.com', 'user14', 'Vendramin', 'Moeyens', '123456', '2557208078', '1', '', '1325 W 24th St', '', 'Nevada', '42150', 62);
+INSERT INTO user
+VALUES (15, 'user15@gmail.com', 'user15', 'Lammle', 'Antonik', '123456', '2064003531', '1', '', '1325 W 24th St', '', 'North Dakota', '68683', 87);
+INSERT INTO user
+VALUES (16, 'user16@gmail.com', 'user16', 'Deckert', 'Zhang', '123456', '2271009358', '1', '', '1325 W 24th St', '', 'Missouri', '43652', 83);
+INSERT INTO user
+VALUES (17, 'user17@gmail.com', 'user17', 'Gillner', 'Aranda Hynes', '123456', '2342889208', '1', '', '1325 W 24th St', '', 'Medfield', '89995', 28);
+INSERT INTO user
+VALUES (18, 'user18@gmail.com', 'user18', 'Gillner', 'Girotti', '123456', '2361028810', '1', '', '1325 W 24th St', '', 'Arkansas', '79158', 53);
+INSERT INTO user
+VALUES (19, 'user19@gmail.com', 'user19', 'Deckert', 'Chambers', '123456', '2524223410', '1', '', '1325 W 24th St', '', 'New Jersey', '82836', 52);
+INSERT INTO user
+VALUES (20, 'user20@gmail.com', 'user20', 'Vendramin', 'Prien', '123456', '2328653600', '1', '', '1325 W 24th St', '', 'Alaska', '74311', 55);
+INSERT INTO user
+VALUES (21, 'user21@gmail.com', 'user21', 'Vendramin', 'Moeyens', '123456', '2247458557', '1', '', '1325 W 24th St', '', 'Idaho', '29826', 40);
+INSERT INTO user
+VALUES (22, 'user22@gmail.com', 'user22', 'Binder', 'Zhang', '123456', '2544773420', '1', '', '1325 W 24th St', '', 'Oregon', '89334', 83);
+INSERT INTO user
+VALUES (23, 'user23@gmail.com', 'user23', 'Ritter', 'Maharaj', '123456', '2950543522', '1', '', '1325 W 24th St', '', 'Texas', '40526', 67);
+INSERT INTO user
+VALUES (24, 'user24@gmail.com', 'user24', 'Binder', 'Maharaj', '123456', '2543277954', '1', '', '1325 W 24th St', '', 'Delaware', '51593', 76);
+INSERT INTO user
+VALUES (25, 'user25@gmail.com', 'user25', 'Ritter', 'Aranda Hynes', '123456', '2889965161', '1', '', '1325 W 24th St', '', 'District of Columbia', '04052', 11);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+COMMIT;
+
+--
 -- Table structure for table `hotel`
 --
 
