@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Table(name = "hotel_image")
 public class HotelImage {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "hotel_image_id")
     private Long hotelImageId;
 

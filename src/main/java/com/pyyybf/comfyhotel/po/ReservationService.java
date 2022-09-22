@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 @Table(name = "reservation_service")
 public class ReservationService {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reservation_service_id")
     private Long reservationServiceId;
 
