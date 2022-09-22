@@ -34,7 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 // every one can sign in/up
                 .antMatchers("/api/user/login", "/api/user/register").permitAll()
-                // any request need auth
+                // any other request need auth
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable();
