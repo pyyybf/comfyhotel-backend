@@ -12,7 +12,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     /**
-     * @description:
+     * find user by email
+     *
      * @param email
      * @return: com.pyyybf.comfyhotel.po.User
      **/
