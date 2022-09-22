@@ -1,6 +1,7 @@
 package com.pyyybf.comfyhotel.bl;
 
 import com.pyyybf.comfyhotel.vo.UserLoginVO;
+import com.pyyybf.comfyhotel.vo.UserRegisterVO;
 import com.pyyybf.comfyhotel.vo.UserVO;
 
 /**
@@ -22,8 +23,8 @@ public interface UserService {
     /**
      * register function, add new user
      *
-     * @param userVO
+     * @param userRegisterVO
      * @return: java.lang.Long
      **/
-    Long register(UserVO userVO);
+    Long register(UserRegisterVO userRegisterVO);
 }

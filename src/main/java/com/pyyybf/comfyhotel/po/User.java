@@ -1,7 +1,7 @@
 package com.pyyybf.comfyhotel.po;
 
 import com.pyyybf.comfyhotel.exception.UserException;
-import com.pyyybf.comfyhotel.vo.UserVO;
+import com.pyyybf.comfyhotel.vo.UserRegisterVO;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
@@ -61,12 +61,12 @@ public class User {
     @Column(name = "credit")
     private Integer credit;
 
-    public static User userVO2PO(UserVO userVO) {
+    public static User userVO2PO(UserRegisterVO userRegisterVO) {
         User user = new User();
-        if (userVO == null) {
+        if (userRegisterVO == null) {
             throw new UserException(3, "Internal check error.");
         }
-        BeanUtils.copyProperties(userVO, user);
+        BeanUtils.copyProperties(userRegisterVO, user);
         return user;
     }
 

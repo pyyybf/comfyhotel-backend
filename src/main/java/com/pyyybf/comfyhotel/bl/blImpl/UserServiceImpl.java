@@ -5,6 +5,7 @@ import com.pyyybf.comfyhotel.dao.UserRepository;
 import com.pyyybf.comfyhotel.exception.UserException;
 import com.pyyybf.comfyhotel.po.User;
 import com.pyyybf.comfyhotel.vo.UserLoginVO;
+import com.pyyybf.comfyhotel.vo.UserRegisterVO;
 import com.pyyybf.comfyhotel.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -38,8 +39,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Long register(UserVO userVO) {
-        User user = User.userVO2PO(userVO);
+    public Long register(UserRegisterVO userRegisterVO) {
+        User user = User.userVO2PO(userRegisterVO);
         user.setPassword(passwordEncoder.encode(user.getPassword()));  // encode password
         user.setCredit(100);  // initial credit score
         try {

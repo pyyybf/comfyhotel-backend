@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * @program: comfy_hotel
- * @description: user entity registered or returned when login
+ * @description: user entity returned when login
  * @author: panyue
  * @date: 2022/9/21
  **/
@@ -27,8 +27,7 @@ public class UserVO implements UserDetails {
     private Long userId;
     private String email;
     private String password;
-    private String firstName;
-    private String lastName;
+    private String username;
     private String avatar;
 
     public static UserVO userPO2VO(User user) {
@@ -54,7 +53,7 @@ public class UserVO implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.email;
+        return this.username;
     }
 
     @Override
