@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * @program: comfy_hotel
- * @description: user entity returned when login
+ * @description: user entity registered or returned when login
  * @author: panyue
  * @date: 2022/9/21
  **/
