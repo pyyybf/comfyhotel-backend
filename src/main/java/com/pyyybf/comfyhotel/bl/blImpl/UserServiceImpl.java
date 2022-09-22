@@ -2,7 +2,12 @@ package com.pyyybf.comfyhotel.bl.blImpl;
 
 import com.pyyybf.comfyhotel.bl.UserService;
 import com.pyyybf.comfyhotel.dao.UserRepository;
+import com.pyyybf.comfyhotel.exception.UserException;
+import com.pyyybf.comfyhotel.po.User;
+import com.pyyybf.comfyhotel.vo.UserLoginVO;
+import com.pyyybf.comfyhotel.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +20,21 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
     @Autowired
+    PasswordEncoder passwordEncoder;
+
+    @Autowired
     UserRepository userRepository;
+
+    @Override
+    public UserVO login(UserLoginVO userLoginVO) {
+        User user = userRepository.findByEmail(userLoginVO.getEmail());
+        if (user == null) {
+            throw new UserException(1, "Your email doesn't exist.");
+        }
+        if (!passwordEncoder.matches(userLoginVO.getPassword(), user.getPassword())) {
+            throw new UserException(2, "Your password is incorrect.");
+        }
+        return UserVO.userPO2VO(user);
+    }
 
 }
