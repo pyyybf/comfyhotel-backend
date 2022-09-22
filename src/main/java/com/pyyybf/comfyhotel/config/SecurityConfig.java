@@ -7,6 +7,9 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 /**
  * @program: comfy_hotel
@@ -32,14 +35,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // block all requests
-        http.authorizeRequests()
+        http.cors()
+                .and()
+                // block all requests
+                .authorizeRequests()
                 // every one can sign in/up
                 .antMatchers("/api/user/login", "/api/user/register").permitAll()
                 // any other request need auth
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable();
+        http.addFilter(corsFilter());
+    }
+
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("http://localhost:3000");  // dev
+        config.addAllowedHeader(CorsConfiguration.ALL);
+        config.addAllowedMethod(CorsConfiguration.ALL);
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
     }
 
 }
