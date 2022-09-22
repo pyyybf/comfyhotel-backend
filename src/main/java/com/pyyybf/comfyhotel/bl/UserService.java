@@ -1,6 +1,5 @@
 package com.pyyybf.comfyhotel.bl;
 
-import com.pyyybf.comfyhotel.exception.UserException;
 import com.pyyybf.comfyhotel.vo.UserLoginVO;
 import com.pyyybf.comfyhotel.vo.UserVO;
 
@@ -16,9 +15,8 @@ public interface UserService {
      * login function, check the email and password
      *
      * @param userLoginVO
-     * @return
-     * @throws UserException
-     */
+     * @return: com.pyyybf.comfyhotel.vo.UserVO
+     **/
     UserVO login(UserLoginVO userLoginVO);
 
     /**
