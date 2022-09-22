@@ -3,6 +3,7 @@ package com.pyyybf.comfyhotel.controller;
 import com.pyyybf.comfyhotel.bl.UserService;
 import com.pyyybf.comfyhotel.vo.ResponseVO;
 import com.pyyybf.comfyhotel.vo.UserLoginVO;
+import com.pyyybf.comfyhotel.vo.UserVO;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +28,11 @@ public class UserController {
     @PostMapping("/login")
     public ResponseVO login(@RequestBody UserLoginVO userLoginVO) {
         return ResponseVO.buildSuccess(userService.login(userLoginVO));
+    }
+
+    @PostMapping("/register")
+    public ResponseVO register(@RequestBody UserVO userVO) {
+        return ResponseVO.buildSuccess(userService.register(userVO));
     }
 
 }

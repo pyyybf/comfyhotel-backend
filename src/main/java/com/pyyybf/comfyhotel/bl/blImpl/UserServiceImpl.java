@@ -37,4 +37,18 @@ public class UserServiceImpl implements UserService {
         return UserVO.userPO2VO(user);
     }
 
+    @Override
+    public Long register(UserVO userVO) {
+        User user = User.userVO2PO(userVO);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));  // encode password
+        user.setCredit(100);  // initial credit score
+        try {
+            userRepository.save(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new UserException(4, "An account already exists with this email.");
+        }
+        return user.getUserId();
+    }
+
 }

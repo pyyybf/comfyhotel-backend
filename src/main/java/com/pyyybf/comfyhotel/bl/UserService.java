@@ -20,4 +20,12 @@ public interface UserService {
      * @throws UserException
      */
     UserVO login(UserLoginVO userLoginVO);
+
+    /**
+     * register function, add new user
+     *
+     * @param userVO
+     * @return: java.lang.Long
+     **/
+    Long register(UserVO userVO);
 }
