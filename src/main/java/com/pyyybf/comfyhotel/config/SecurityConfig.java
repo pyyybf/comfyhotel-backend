@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // 拦截所有的请求
+        // block all requests
         http.authorizeRequests()
                 // every one can sign in/up
                 .antMatchers("/api/user/login", "/api/user/register").permitAll()
