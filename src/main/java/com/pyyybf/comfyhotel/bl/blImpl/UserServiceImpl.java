@@ -42,6 +42,7 @@ public class UserServiceImpl implements UserService {
     public Long register(UserRegisterVO userRegisterVO) {
         User user = User.userVO2PO(userRegisterVO);
         user.setPassword(passwordEncoder.encode(user.getPassword()));  // encode password
+        user.setUsername(user.getFirstName() + " " + user.getLastName());
         user.setCredit(100);  // initial credit score
         try {
             userRepository.save(user);
