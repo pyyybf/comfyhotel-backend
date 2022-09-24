@@ -107,6 +107,7 @@ CREATE TABLE `hotel`
 (
     `hotel_id` bigint(20) NOT NULL AUTO_INCREMENT,
     `name` varchar(100) NOT NULL COMMENT 'hotel name',
+    `star` tinyint NOT NULL COMMENT 'star of hotel',
     `description` text COMMENT 'hotel description',
     `rate` double DEFAULT 0 COMMENT 'hotel rate',
     `address` varchar(100) COMMENT 'street address',

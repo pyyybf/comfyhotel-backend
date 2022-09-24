@@ -22,6 +22,9 @@ public class Hotel {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "star")
+    private Integer star;
+
     @Column(name = "description")
     private String description;
 
