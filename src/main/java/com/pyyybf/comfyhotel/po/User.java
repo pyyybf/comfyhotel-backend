@@ -61,6 +61,12 @@ public class User {
     @Column(name = "credit")
     private Integer credit;
 
+    @Column(name = "hotel_id")
+    private Long hotelId;
+
+    @Column(name = "role")
+    private String role;
+
     public static User userVO2PO(UserRegisterVO userRegisterVO) {
         User user = new User();
         if (userRegisterVO == null) {

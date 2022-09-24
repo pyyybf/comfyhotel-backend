@@ -43,7 +43,10 @@ CREATE TABLE `user`
     `state` varchar(100) COMMENT 'state',
     `zip_code` varchar(20) COMMENT 'zip code',
     `credit` tinyint NOT NULL DEFAULT 100 COMMENT 'credit score',
-    PRIMARY KEY (`user_id`)
+    `hotel_id` bigint(20) COMMENT 'hotel he belongs to, user/admin is null',
+    `role` varchar(1) NOT NULL DEFAULT 'U' COMMENT 'user role: U->user, M->manager, B->boss, A->admin',
+    PRIMARY KEY (`user_id`),
+    FOREIGN KEY(hotel_id) REFERENCES hotel(hotel_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8;
@@ -56,55 +59,39 @@ CREATE TABLE `user`
 BEGIN;
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 INSERT INTO user
-VALUES (1, 'pyyybf@gmail.com', 'pyyybf', 'Yue', 'Pan', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2134485795', '1', '', '1325 W 24th St', 'Los Angeles', 'California', '90007', 98);
+VALUES (1, 'admin@gmail.com', 'admin', 'Yue', 'Pan', '$2a$10$3NG0u6Px687NO3CoBsOF5uOCqdGBYeS1CGJmTDE/rqKGwu/MxDMzu', NULL, NULL, '', NULL, NULL, NULL, NULL, 100, NULL, 'A');
 INSERT INTO user
-VALUES (2, 'user2@gmail.com', 'user2', 'Joehrer', 'Prien', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2537820764', '1', '', '1325 W 24th St', '', 'Vermont', '27843', 33);
+VALUES (2, 'pyyybf@gmail.com', 'pyyybf', 'Yue', 'Pan', '$2a$10$3NG0u6Px687NO3CoBsOF5uOCqdGBYeS1CGJmTDE/rqKGwu/MxDMzu', '2134485795', '1', '', '1325 W 24th St', 'Los Angeles', 'California', '90007', 98, NULL, 'U');
 INSERT INTO user
-VALUES (3, 'user3@gmail.com', 'user3', 'Joehrer', 'Aranda Hynes', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2662370455', '1', '', '1325 W 24th St', '', 'Kentucky', '99411', 23);
+VALUES (3, 'user3@gmail.com', 'boss1', 'Dietz', 'Farnleitner', '$2a$10$3NG0u6Px687NO3CoBsOF5uOCqdGBYeS1CGJmTDE/rqKGwu/MxDMzu', NULL, NULL, '', NULL, NULL, NULL, NULL, 100, 1, 'B');
 INSERT INTO user
-VALUES (4, 'user4@gmail.com', 'user4', 'Lammle', 'Farnleitner', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2116259337', '1', '', '1325 W 24th St', '', 'Vermont', '28770', 96);
+VALUES (4, 'user4@gmail.com', 'manager1_1', 'Gillner', 'Zhang', '$2a$10$3NG0u6Px687NO3CoBsOF5uOCqdGBYeS1CGJmTDE/rqKGwu/MxDMzu', NULL, NULL, '', NULL, NULL, NULL, NULL, 100, 1, 'M');
 INSERT INTO user
-VALUES (5, 'user5@gmail.com', 'user5', 'Vendramin', 'Boese', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2095140276', '1', '', '1325 W 24th St', '', 'Florida', '47141', 96);
+VALUES (5, 'user5@gmail.com', 'manager1_2', 'Maimaitiyiming', 'Girotti', '$2a$10$3NG0u6Px687NO3CoBsOF5uOCqdGBYeS1CGJmTDE/rqKGwu/MxDMzu', NULL, NULL, '', NULL, NULL, NULL, NULL, 100, 1, 'M');
 INSERT INTO user
-VALUES (6, 'user6@gmail.com', 'user6', 'Lammle', 'Page', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2290400255', '1', '', '1325 W 24th St', '', 'Cokato', '11661', 8);
+VALUES (6, 'user6@gmail.com', 'boss2', 'Joehrer', 'Prien', '$2a$10$3NG0u6Px687NO3CoBsOF5uOCqdGBYeS1CGJmTDE/rqKGwu/MxDMzu', NULL, NULL, '', NULL, NULL, NULL, NULL, 100, 2, 'B');
 INSERT INTO user
-VALUES (7, 'user7@gmail.com', 'user7', 'Lammle', 'Page', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2957317044', '1', '', '1325 W 24th St', '', 'Massachusetts', '68584', 63);
+VALUES (7, 'user7@gmail.com', 'manager2_1', 'Vendramin', 'Girotti', '$2a$10$3NG0u6Px687NO3CoBsOF5uOCqdGBYeS1CGJmTDE/rqKGwu/MxDMzu', NULL, NULL, '', NULL, NULL, NULL, NULL, 100, 2, 'M');
 INSERT INTO user
-VALUES (8, 'user8@gmail.com', 'user8', 'Gillner', 'Aranda Hynes', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2570974625', '1', '', '1325 W 24th St', '', 'Arkansas', '65274', 91);
+VALUES (8, 'user8@gmail.com', 'manager2_2', 'Joehrer', 'Zhang', '$2a$10$3NG0u6Px687NO3CoBsOF5uOCqdGBYeS1CGJmTDE/rqKGwu/MxDMzu', NULL, NULL, '', NULL, NULL, NULL, NULL, 100, 2, 'M');
 INSERT INTO user
-VALUES (9, 'user9@gmail.com', 'user9', 'Dietz', 'Farnleitner', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2524404647', '1', '', '1325 W 24th St', '', 'Montana', '80029', 90);
+VALUES (9, 'user9@gmail.com', 'boss3', 'Joehrer', 'Boese', '$2a$10$3NG0u6Px687NO3CoBsOF5uOCqdGBYeS1CGJmTDE/rqKGwu/MxDMzu', NULL, NULL, '', NULL, NULL, NULL, NULL, 100, 3, 'B');
 INSERT INTO user
-VALUES (10, 'user10@gmail.com', 'user10', 'Gillner', 'Page', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2506060896', '1', '', '1325 W 24th St', '', 'Maryland', '06199', 97);
+VALUES (10, 'user10@gmail.com', 'manager3_1', 'Gillner', 'Farnleitner', '$2a$10$3NG0u6Px687NO3CoBsOF5uOCqdGBYeS1CGJmTDE/rqKGwu/MxDMzu', NULL, NULL, '', NULL, NULL, NULL, NULL, 100, 3, 'M');
 INSERT INTO user
-VALUES (11, 'user11@gmail.com', 'user11', 'Lammle', 'Zhang', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2345418436', '1', '', '1325 W 24th St', '', 'New York', '88661', 69);
+VALUES (11, 'user11@gmail.com', 'manager3_2', 'Maimaitiyiming', 'Maharaj', '$2a$10$3NG0u6Px687NO3CoBsOF5uOCqdGBYeS1CGJmTDE/rqKGwu/MxDMzu', NULL, NULL, '', NULL, NULL, NULL, NULL, 100, 3, 'M');
 INSERT INTO user
-VALUES (12, 'user12@gmail.com', 'user12', 'Vendramin', 'Prien', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2936444207', '1', '', '1325 W 24th St', '', 'New Jersy', '18369', 49);
+VALUES (12, 'user12@gmail.com', 'boss4', 'Ritter', 'Moeyens', '$2a$10$3NG0u6Px687NO3CoBsOF5uOCqdGBYeS1CGJmTDE/rqKGwu/MxDMzu', NULL, NULL, '', NULL, NULL, NULL, NULL, 100, 4, 'B');
 INSERT INTO user
-VALUES (13, 'user13@gmail.com', 'user13', 'Dietz', 'Prien', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2115766777', '1', '', '1325 W 24th St', '', 'Iowa', '88563', 27);
+VALUES (13, 'user13@gmail.com', 'manager4_1', 'Ritter', 'Boese', '$2a$10$3NG0u6Px687NO3CoBsOF5uOCqdGBYeS1CGJmTDE/rqKGwu/MxDMzu', NULL, NULL, '', NULL, NULL, NULL, NULL, 100, 4, 'M');
 INSERT INTO user
-VALUES (14, 'user14@gmail.com', 'user14', 'Lammle', 'Aranda Hynes', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2997616653', '1', '', '1325 W 24th St', '', 'Oregon', '77084', 18);
+VALUES (14, 'user14@gmail.com', 'manager4_2', 'Ritter', 'Zhang', '$2a$10$3NG0u6Px687NO3CoBsOF5uOCqdGBYeS1CGJmTDE/rqKGwu/MxDMzu', NULL, NULL, '', NULL, NULL, NULL, NULL, 100, 4, 'M');
 INSERT INTO user
-VALUES (15, 'user15@gmail.com', 'user15', 'Joehrer', 'Chambers', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2921575085', '1', '', '1325 W 24th St', '', 'Medfield', '37561', 26);
+VALUES (15, 'user15@gmail.com', 'boss5', 'Gillner', 'Moeyens', '$2a$10$3NG0u6Px687NO3CoBsOF5uOCqdGBYeS1CGJmTDE/rqKGwu/MxDMzu', NULL, NULL, '', NULL, NULL, NULL, NULL, 100, 5, 'B');
 INSERT INTO user
-VALUES (16, 'user16@gmail.com', 'user16', 'Deckert', 'Maharaj', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2812748440', '1', '', '1325 W 24th St', '', 'Ohio', '29694', 29);
+VALUES (16, 'user16@gmail.com', 'manager5_1', 'Joehrer', 'Girotti', '$2a$10$3NG0u6Px687NO3CoBsOF5uOCqdGBYeS1CGJmTDE/rqKGwu/MxDMzu', NULL, NULL, '', NULL, NULL, NULL, NULL, 100, 5, 'M');
 INSERT INTO user
-VALUES (17, 'user17@gmail.com', 'user17', 'Gillner', 'Farnleitner', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2777292273', '1', '', '1325 W 24th St', '', 'Indiana', '13767', 14);
-INSERT INTO user
-VALUES (18, 'user18@gmail.com', 'user18', 'Lammle', 'Farnleitner', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2772131042', '1', '', '1325 W 24th St', '', 'Trimble', '91052', 47);
-INSERT INTO user
-VALUES (19, 'user19@gmail.com', 'user19', 'Vendramin', 'Aranda Hynes', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2978699625', '1', '', '1325 W 24th St', '', 'Ohio', '43033', 36);
-INSERT INTO user
-VALUES (20, 'user20@gmail.com', 'user20', 'Deckert', 'Zhang', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2908928605', '1', '', '1325 W 24th St', '', 'Kansas', '14819', 6);
-INSERT INTO user
-VALUES (21, 'user21@gmail.com', 'user21', 'Deckert', 'Farnleitner', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2087143437', '1', '', '1325 W 24th St', '', 'Delaware', '48677', 93);
-INSERT INTO user
-VALUES (22, 'user22@gmail.com', 'user22', 'Maimaitiyiming', 'Girotti', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2002019675', '1', '', '1325 W 24th St', '', 'Illinois', '06246', 35);
-INSERT INTO user
-VALUES (23, 'user23@gmail.com', 'user23', 'Vendramin', 'Aranda Hynes', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2002938162', '1', '', '1325 W 24th St', '', 'Idaho', '49856', 41);
-INSERT INTO user
-VALUES (24, 'user24@gmail.com', 'user24', 'Maimaitiyiming', 'Aranda Hynes', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2456988033', '1', '', '1325 W 24th St', '', 'Connecticut', '70139', 52);
-INSERT INTO user
-VALUES (25, 'user25@gmail.com', 'user25', 'Joehrer', 'Boese', '$2a$10$mAJm.nTprOCVCERZNuIWJOQfOMogAOseMo9L2nTKj1dqgPhxXFebm', '2022063218', '1', '', '1325 W 24th St', '', 'Missouri', '41138', 20);
+VALUES (17, 'user17@gmail.com', 'manager5_2', 'Lammle', 'Girotti', '$2a$10$3NG0u6Px687NO3CoBsOF5uOCqdGBYeS1CGJmTDE/rqKGwu/MxDMzu', NULL, NULL, '', NULL, NULL, NULL, NULL, 100, 5, 'M');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 COMMIT;
 
@@ -132,26 +119,23 @@ CREATE TABLE `hotel`
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `manager`
+-- Dumping data for table `hotel`
 --
 
-SET NAMES utf8mb4;
-DROP TABLE IF EXISTS `manager`;
-/*!40101 SET @saved_cs_client = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `manager`
-(
-    `manager_id` bigint(20) NOT NULL AUTO_INCREMENT,
-    `username` varchar(64) NOT NULL UNIQUE COMMENT 'manager name',
-    `hotel_id` bigint(20) NOT NULL COMMENT 'hotel he belongs to',
-    `password` varchar(64) NOT NULL COMMENT 'password',
-    `role` tinyint NOT NULL COMMENT 'if boss: 0->no, 1->yes',
-    PRIMARY KEY (`manager_id`),
-    FOREIGN KEY(hotel_id) REFERENCES hotel(hotel_id) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB
-  AUTO_INCREMENT = 1
-  DEFAULT CHARSET = utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+BEGIN;
+/*!40000 ALTER TABLE `hotel` ENABLE KEYS */;
+INSERT INTO hotel
+VALUES (1, 'Millennium Biltmore Los Angeles', 4, 'Hotel Features\nLocated in downtown Los Angeles, this luxurious design hotel is just a 4-minute walk from Pershing Square Subway Station. Millennium Biltmore Hotel provides on-site dining, an indoor pool, and rooms with satellite TV. Dining options include Rendezvous Court Cafe and Gallery Bar. Decorated in rich, warm colors, the guest rooms provide a safe and a work desk. Each room has a coffee maker as well. The marble bathrooms include a hairdryer. Guests at Biltmore Millennium Hotel can swim in the Roman-style indoor pool. They can also work out in the gym. The hotel is within an 8-minute walk from The Museum of Contemporary Art and Walt Disney Concert Hall.\nHotel Location\nDoes it look familiar? You\'ve probably seen it in a movie, since L.A. is one of the top sites for production in the country. You\'re guaranteed to experience something new in the heart of this highly diverse metropolitan area. Downtown is the site of the city\'s many cultural neighborhoods and the financial district. Shopping is certainly not in short supply. Museums include the Museum of Contemporary Art and the Museum of Neon Art. Some of the places you may consider visiting are the Walt Disney Concert Hall, the Civic Center, the STAPLES Center, the Los Angeles Convention Center and lastly, Dodger Stadium, which is just a few miles away.', 7.3, '506 South Grand Avenue', 'Los Angeles', 'California');
+INSERT INTO hotel
+VALUES (2, 'Hotel Per La', 5, 'Hotel Features\nLocated in the center of Downtown, Per LA is a hotel inspired by the building in which it’s housed. Originally the Bank of Italy, a historic 12-story building on the corner of Olive and 7th Street, the space is a symbol of inclusion and accomplishment. All rooms feature original artwork from a Paris-based design studio and are dressed in custom-designed furnishings and luxury linens. Many include standalone pedestal bathtubs and separate rooms for wash closets. Rooms also include desks, a fully stocked mini-bar, toiletries, and bathrobes. Guests can utilize the 24-hour fitness or lounge in the rooftop pool and bar. From the rooftop, guests can take in panoramic views of downtown Los Angeles or enjoy a cup of coffee from the outdoor cafe. There is a 24-hour front desk and valet parking at the property. The Grove is 6 mi from the hotel, while TCL Chinese Theater is 6.2 mi away. Walt Disney Concert Hall is 0.7 mi away. The nearest airport is Los Angeles International Airport, 11 mi from the property.\nHotel Location\nDoes it look familiar? You\'ve probably seen it in a movie, since L.A. is one of the top sites for production in the country. You\'re guaranteed to experience something new in the heart of this highly diverse metropolitan area. Downtown is the site of the city\'s many cultural neighborhoods and the financial district. Shopping is certainly not in short supply. Museums include the Museum of Contemporary Art and the Museum of Neon Art. Some of the places you may consider visiting are the Walt Disney Concert Hall, the Civic Center, the STAPLES Center, the Los Angeles Convention Center and lastly, Dodger Stadium, which is just a few miles away.', 8.2, '649 South Olive Street', 'Los Angeles', 'California');
+INSERT INTO hotel
+VALUES (3, 'Boston Park Plaza Hotel', 4, 'Hotel Features\nEstablished in 1927, Boston Park Plaza is located in the Theater District in Boston, 459 feet from Boston Public Garden, 1148 feet from Boston Common and 1476 feet from John Hancock Tower. Guests can enjoy the on-site restaurant. Certain rooms have a seating area for your convenience. A flat-screen TV with cable channels and Chromecast® streaming capabilities, black out shades and a refrigerator are also offered. Off The Common, Park Plaza’s signature restaurant, offers fresh and locally inspired cuisine. A seasonal menu is available for room service. Connected to the lobby is STRIP by Strega, a contemporary steakhouse in Boston offering fresh seafood, reinterpreted sides and specialty steaks and chops and creative cocktails. Coffee and small bites are available at Starbucks®, located just off the main lobby. There is a gift shop at the property and a 24-hour on-site FedEx business center is also available featuring personal computers, laptop connection, printing, and faxing. Meeting facilities are also featured at Boston Park Plaza. There are two fitness facilities on-site, a fitness center and Lynx, offering personal training and group fitness classes, as well as Boston’s first Topgolf Swing Suite. Concierge services are provided at this pet-friendly hotel. Newbury Street is 722 feet away from Park Plaza. King\'s Chapel and Burying Ground is 1312 feet from Boston Park Plaza, while Freedom Trail is 2625 feet away. The nearest airport is Logan Airport, 5.3 mi from Boston Park Plaza.\nHotel Location\nA few blocks from downtown Boston and the Financial District, this gorgeous area includes Boston\'s two main parks - Boston Common and the Public Garden, whose lake is a guaranteed family pleaser with its Swan Boats and actual swans. Just south of the parks is Boston\'s highly acclaimed theater district (also noted for its world-class dining), while to the southeast is one of the oldest and most colorful Chinatowns in the country.', 8.1, '50 Park Plaza At Arlington Street', 'Boston', 'Massachusetts');
+INSERT INTO hotel
+VALUES (4, 'Row NYC', 4, 'Hotel Features\nOffering a front row view to Times Square, this Theater District hotel features a fitness center, concierge service and a business center. Rockefeller Center is a short walking distance away. A flat-screen cable TV, iPod docking station and safe for a laptop are offered in each room at Row NYC. Blackout curtains and a desk are also included. Row NYC is a family and pet-friendly hotel. Located in the lobby, the District M Bar serves a daily continental breakfast each morning. In the evening, District M comes alive featuring a digital art gallery, drinks including a specialty cocktail list, dinner and live music (Thursday - Saturday). The on-site Sugar Factory offers an assortment of pastries, milkshakes, sandwiches, ice cream sundaes and more. For added convenience, information and arrangements for shows, transportation and shopping are available through the concierge services Plenty of shops and dining are within walking distance of the hotel. Radio City Music Hall, Madison Square Garden, the Empire State Building, and Javits Convention Center are 15 minutes’ walk away.\nHotel Location\nA half-million people pass through Times Square every day, making it the world\'s most popular tourist attraction. It shines brightest at night, and the best place to take it all in is from the giant red staircase above the TKTS booth, where discount, same-day Broadway tickets can be purchased. Theater buffs and families will have a field day in the Times Square area, where they\'ll find live shows, plenty of restaurants and lots of action.', 6.8, '700 Eighth Avenue', 'New York', 'New York');
+INSERT INTO hotel
+VALUES (5, 'Treasure Island - TI Las Vegas Hotel & Casino, a Radisson Hotel', 4, 'Hotel Features\nLocated directly on the Las Vegas Strip, this hotel and casino features a variety of restaurants, bars, a spa and a seasonal outdoor pool. All guest rooms feature a flat-screen LCD TV with digital cable and pay-per-view channels. Guest rooms at the Treasure Island - TI Las Vegas Hotel & Casino, a Radisson Hotel offer floor-to-ceiling windows with views of the mountains and the Las Vegas Strip. The air-conditioned rooms are equipped a large work desk, a small fridge and a laptop safe. A hairdryer, a lighted makeup mirror and free toiletries are included in the private bathrooms. Located at Treasure Island and open daily from 10:00 until 22:00, Marvel’s Avengers S.T.A.T.I.O.N. is a completely immersive and educational experience that brings visitors into the world of The Avengers. Welcoming all ages, paid admissions will be granted access to the official S.T.A.T.I.O.N. headquarters and taken deep into the Marvel Cinematic Universe with access to an array of intelligence files, classified studies and experiments that explore the history and scientific origins of The Avengers while training to become an agent of S.T.A.T.I.O.N. Guests of Treasure Island - TI Las Vegas Hotel & Casino, a Radisson Hotel can dine at Phil’s Italian Steakhouse, which serves a dinner menu of classic steaks, seafood and Italian specialties. For a more casual restaurant/bar atmosphere guests can enjoy Senor Frogs Las Vegas, which features Mexican cuisine. Gilley’s BBQ, a reincarnation of a Texas honky-tonk saloon and dance hall, offers line dancing and mechanical bull riding. The hotel features a large casino with table games, slots and video poker, a sports book and a high limit lounge. A fitness center and a spa and wellness center are also available for guest use. Dry cleaning and laundry services are offered. A chapel and various shops are located on-site. Fashion Show Mall is 5 minutes’ walk from Treasure Island Hotel & Casino and Sands Expo is less than 1 mi away. The Las Vegas Convention Center is 1.9 mi from the hotel.\nHotel Location\nYou\'ll find plenty of shopping in this northern Strip stretch, home to the Fashion Show Mall. Plenty of gaming, dining, and entertainment are within easy reach of this glitzy spot, featuring some of the city\'s best-known casinos.', 8.0, '3300 South Las Vegas Boulevard', 'Las Vegas', 'Nevada');
+/*!40000 ALTER TABLE `hotel` ENABLE KEYS */;
+COMMIT;
 
 --
 -- Table structure for table `hotel_image`
