@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // block all requests
                 .authorizeRequests()
                 // every one can sign in/up
-                .antMatchers("/api/user/login", "/api/user/register").permitAll()
+                .antMatchers("/api/user/login", "/api/user/register", "/api/user/logout").permitAll()
                 // any other request need auth
                 .anyRequest().authenticated()
                 .and()

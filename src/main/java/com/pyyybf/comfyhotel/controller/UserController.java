@@ -35,4 +35,9 @@ public class UserController {
         return ResponseVO.buildSuccess(userService.register(userRegisterVO));
     }
 
+    @PostMapping("/logout")
+    public ResponseVO logout(@RequestBody String token) {
+        return ResponseVO.buildSuccess(token);
+    }
+
 }
