@@ -40,4 +40,7 @@ public class Room {
     @Column(name = "price")
     private Double price;
 
+    @Column(name = "bed_number")
+    private Integer bedNumber;
+
 }

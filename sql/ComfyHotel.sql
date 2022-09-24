@@ -176,6 +176,7 @@ CREATE TABLE `room`
     `remaining` int NOT NULL COMMENT 'remaining room number',
     `facility` varchar(500) NOT NULL COMMENT 'room facility',
     `price` double DEFAULT 0 COMMENT 'unit price',
+    `bed_number` int DEFAULT 0 COMMENT 'number of beds',
     PRIMARY KEY (`room_id`),
     FOREIGN KEY(hotel_id) REFERENCES hotel(hotel_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
