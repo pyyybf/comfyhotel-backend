@@ -29,7 +29,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.13</version><!--用这个版本才能连上mysql 5.7-->
+			<version>8.0.13</version><!-- for mysql 5.7 -->
 			<scope>runtime</scope>
 		</dependency>
 
@@ -48,7 +48,7 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 
-		<!-- Swagger-UI API文档生产工具 -->
+		<!-- Swagger-UI API -->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
@@ -59,7 +59,7 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.9.2</version>
 		</dependency>
-		<!-- 解决Swagger 2.9.2版本NumberFormatException -->
+		<!-- solve Swagger v2.9.2 NumberFormatException -->
 		<dependency>
 			<groupId>io.swagger</groupId>
 			<artifactId>swagger-models</artifactId>
