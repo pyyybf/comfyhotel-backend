@@ -54,6 +54,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
         config.addAllowedOrigin("http://localhost:8080");  // dev
+        // prod
+        config.addAllowedOrigin("http://35.92.191.64:8080");
+        config.addAllowedOrigin("http://ec2-35-92-191-64.us-west-2.compute.amazonaws.com");
         config.addAllowedHeader(CorsConfiguration.ALL);
         config.addAllowedMethod(CorsConfiguration.ALL);
         source.registerCorsConfiguration("/**", config);
