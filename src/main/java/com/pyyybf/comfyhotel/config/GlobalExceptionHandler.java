@@ -1,5 +1,6 @@
 package com.pyyybf.comfyhotel.config;
 
+import com.pyyybf.comfyhotel.exception.HotelException;
 import com.pyyybf.comfyhotel.exception.UserException;
 import com.pyyybf.comfyhotel.vo.ResponseVO;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -28,6 +29,17 @@ public class GlobalExceptionHandler {
     @ExceptionHandler
     public ResponseVO handleUserException(UserException userException) {
         return ResponseVO.buildFailure(userException.getMessage(), 10000 + userException.getCode());
+    }
+
+    /**
+     * 20001 Hotel query failed.
+     *
+     * @param hotelException
+     * @return: com.pyyybf.comfyhotel.vo.ResponseVO
+     **/
+    @ExceptionHandler
+    public ResponseVO handleHotelException(HotelException hotelException) {
+        return ResponseVO.buildFailure(hotelException.getMessage(), 20000 + hotelException.getCode());
     }
 
 }
