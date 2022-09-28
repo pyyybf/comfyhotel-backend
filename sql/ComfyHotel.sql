@@ -113,6 +113,7 @@ CREATE TABLE `hotel`
     `address` varchar(100) COMMENT 'street address',
     `city` varchar(100) COMMENT 'city',
     `state` varchar(100) COMMENT 'state',
+    `cover_image` varchar(100) COMMENT 'url of cover image',
     PRIMARY KEY (`hotel_id`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
@@ -172,11 +173,13 @@ CREATE TABLE `room`
     `hotel_id` bigint(20) NOT NULL COMMENT 'hotel it belongs to',
     `name` varchar(100) NOT NULL COMMENT 'room name',
     `description` varchar(500) COMMENT 'room description',
-    `total` int DEFAULT 0 COMMENT 'total room number',
+    `total` int DEFAULT 1 COMMENT 'total room number',
     `remaining` int NOT NULL COMMENT 'remaining room number',
-    `facility` varchar(500) NOT NULL COMMENT 'room facility',
-    `price` double DEFAULT 0 COMMENT 'unit price',
-    `bed_number` int DEFAULT 0 COMMENT 'number of beds',
+    `facility` varchar(500) COMMENT 'room facility',
+    `price` double DEFAULT 0 NOT NULL COMMENT 'unit price',
+    `bed_type` varchar(100) NOT NULL COMMENT 'type of beds',
+    `bed_number` int DEFAULT 0 NOT NULL COMMENT 'number of beds',
+    `sleep_up_to` int COMMENT 'number of people can sleep',
     PRIMARY KEY (`room_id`),
     FOREIGN KEY(hotel_id) REFERENCES hotel(hotel_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
@@ -216,16 +219,16 @@ CREATE TABLE `reservation`
 (
     `reservation_id` bigint(20) NOT NULL AUTO_INCREMENT,
     `user_id` bigint(20) NOT NULL COMMENT 'user it belongs to',
+    `hotel_id` bigint(20) NOT NULL COMMENT 'hotel it made in',
     `time` datetime NOT NULL COMMENT 'reservation time',
     `check_in_date` date NOT NULL COMMENT 'check-in date',
     `check_out_date` date NOT NULL COMMENT 'check-out date',
     `tax` double NOT NULL DEFAULT 0 COMMENT 'tax fee',
     `destination` double NOT NULL DEFAULT 0 COMMENT 'destination fee',
     `total_cost` double NOT NULL DEFAULT 0 COMMENT 'total cost',
-    `adult` tinyint NOT NULL DEFAULT 0 COMMENT 'adults number',
-    `child` tinyint NOT NULL DEFAULT 0 COMMENT 'children number',
     PRIMARY KEY (`reservation_id`),
-    FOREIGN KEY(user_id) REFERENCES user(user_id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY(user_id) REFERENCES user(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY(hotel_id) REFERENCES hotel(hotel_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = utf8;
@@ -245,7 +248,7 @@ CREATE TABLE `reservation_room`
     `reservation_id` bigint(20) NOT NULL,
     `room_id` bigint(20) NOT NULL,
     `number` int NOT NULL COMMENT 'room number',
-    `unit_price` double NOT NULL COMMENT 'unit price when reservationed',
+    `unit_price` double NOT NULL COMMENT 'unit price when reserved',
     PRIMARY KEY (`reservation_room_id`),
     FOREIGN KEY(reservation_id) REFERENCES reservation(reservation_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY(room_id) REFERENCES room(room_id) ON DELETE CASCADE ON UPDATE CASCADE

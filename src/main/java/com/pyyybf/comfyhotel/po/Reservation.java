@@ -24,6 +24,9 @@ public class Reservation {
     @Column(name = "user_id")
     private Long userId;
 
+    @Column(name = "hotel_id")
+    private Long hotelId;
+
     @Column(name = "time")
     private Timestamp time;
 
@@ -41,11 +44,5 @@ public class Reservation {
 
     @Column(name = "total_cost")
     private Double totalCost;
-
-    @Column(name = "adult")
-    private Integer adult;
-
-    @Column(name = "child")
-    private Integer child;
 
 }

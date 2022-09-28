@@ -40,4 +40,10 @@ public class Hotel {
     @Column(name = "state")
     private String state;
 
+    @Column(name = "cover_image")
+    private String coverImage;
+
+    @Transient
+    private Double price;  // price of the cheapest room
+
 }
